@@ -3,38 +3,57 @@
   <h1>Filmothèque</h1>
 
 
+    <section class="form">
+      <FilmForm @create="create"/>
+    </section>
+
+    <section class="btn-container">
+      <button @click="this.filter = 'ALL'">Tout</button>
+      <button @click="this.filter = true">Vus</button>
+      <button @click="this.filter = false">Pas Vu</button>
+    </section>
+
     <section class="grid">
-      <div class="card" v-for="(f) of films" :key="f.id">
-        <div class="c-header">
-          <img :src="f.img" :alt="f.title">
-        </div>
-        <div class="c-body">
-          <h3 :class="{seen: f.vu}">{{f.title}}</h3>
-          <button @click="setVue(f)">{{ f.vu? 'Marquer comme non vu'  : 'Marquer comme vu' }}</button>
-        </div>
-      </div>
+      <MyCard v-for="f in filtered" :key="f.id" :f="f" @update="setVue"/>
     </section>
   </main>
 </template>
 
 <script>
+import MyCard from "@/components/Card";
+import {Film} from "@/models/Film";
+import FilmForm from "@/components/FilmForm";
+
+
 export default {
 name: "MyFilmotheque",
-data() {
+  components: {FilmForm, MyCard},
+  data() {
   return {
     films: [
-      {id: 1, title: 'Retour vers le Futur 1', img : '', vu: true},
-      {id: 2, title: 'Retour vers le Futur 2', img : '', vu: true},
-      {id: 3, title: 'Retour vers le Futur 3', img : '', vu: true},
-      {id: 4, title: 'Jurrassic Parc', img : '', vu: true},
-      {id: 5, title: 'Police Academy 1', img : '', vu: false},
-      {id: 6, title: 'Police Academy 2', img : '', vu: false},
-    ]
+      new Film(1, 'Retour vers le Futur 1', 'https://fr.web.img6.acsta.net/c_310_420/medias/nmedia/18/35/91/26/18686482.jpg', true),
+      new Film(2, 'Retour vers le Futur 2', 'https://fr.web.img4.acsta.net/c_310_420/pictures/15/10/20/15/48/474464.jpg', true),
+      new Film(3, 'Retour vers le Futur 3', 'https://fr.web.img2.acsta.net/c_310_420/medias/nmedia/00/02/52/13/retour.jpg', true),
+      new Film(4, 'Jurrassic Parc', 'https://fr.web.img2.acsta.net/c_310_420/pictures/20/07/21/16/53/1319265.jpg', true),
+      new Film(6, 'Police Academy 2', 'https://fr.web.img2.acsta.net/c_310_420/medias/nmedia/18/95/77/86/20427446.jpg', true),
+      new Film(5, 'Police Academy 3', 'https://fr.web.img4.acsta.net/c_310_420/medias/nmedia/18/95/99/34/20438281.jpg', true)
+    ],
+    filter: 'ALL'
   }
 },
   methods: {
-    setVue(film) {
-      film.vu = !film.vu;
+    setVue(id) {
+      const index = this.films.findIndex(film => film.id === id);
+      this.films[index].vu = !this.films[index].vu
+    },
+    create(film) {
+      this.films.push(film)
+    },
+  },
+  computed : {
+    filtered()  {
+      if(this.filter === 'ALL') return this.films;
+      return this.films.filter(film => film.vu === this.filter )
     }
   }
 }
@@ -44,9 +63,7 @@ data() {
 h1 {
   margin-bottom: 50px;
 }
-.seen::before {
-  content: "✔️" ;
-}
+
 
 .grid {
   display: flex;
@@ -54,16 +71,18 @@ h1 {
   flex-wrap: wrap;
 }
 
-.card {
-  width: min(100%, 300px);
-  box-shadow: 2px 2px 8px #a9a9a9;
-  padding: 20px;
-  border-radius: 5px;
-}
 
 main {
   width: 80%;
   margin: auto;
+}
+
+.form {
+  margin: 100px 0;
+}
+
+.btn-container {
+  margin-bottom: 50px;
 }
 
 
