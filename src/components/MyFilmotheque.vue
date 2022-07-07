@@ -4,7 +4,7 @@
 
 
     <section class="form">
-      <FilmForm @create="create"/>
+      <FilmForm @reload="getFilms" :film-to-update="movieToUpdate"/>
     </section>
 
     <section class="btn-container">
@@ -14,15 +14,15 @@
     </section>
 
     <section class="grid">
-      <MyCard v-for="f in filtered" :key="f.id" :f="f" @update="setVue"/>
+      <MyCard v-for="f in filtered" :key="f.id" :f="f" @reload="getFilms"  @update="update"/>
     </section>
   </main>
 </template>
 
 <script>
 import MyCard from "@/components/Card";
-import {Film} from "@/models/Film";
 import FilmForm from "@/components/FilmForm";
+import FilmService from "@/services/FilmService";
 
 
 export default {
@@ -30,31 +30,31 @@ name: "MyFilmotheque",
   components: {FilmForm, MyCard},
   data() {
   return {
-    films: [
-      new Film(1, 'Retour vers le Futur 1', 'https://fr.web.img6.acsta.net/c_310_420/medias/nmedia/18/35/91/26/18686482.jpg', true),
-      new Film(2, 'Retour vers le Futur 2', 'https://fr.web.img4.acsta.net/c_310_420/pictures/15/10/20/15/48/474464.jpg', true),
-      new Film(3, 'Retour vers le Futur 3', 'https://fr.web.img2.acsta.net/c_310_420/medias/nmedia/00/02/52/13/retour.jpg', true),
-      new Film(4, 'Jurrassic Parc', 'https://fr.web.img2.acsta.net/c_310_420/pictures/20/07/21/16/53/1319265.jpg', true),
-      new Film(6, 'Police Academy 2', 'https://fr.web.img2.acsta.net/c_310_420/medias/nmedia/18/95/77/86/20427446.jpg', true),
-      new Film(5, 'Police Academy 3', 'https://fr.web.img4.acsta.net/c_310_420/medias/nmedia/18/95/99/34/20438281.jpg', true)
-    ],
-    filter: 'ALL'
+    films: [],
+    filter: 'ALL',
+    movieToUpdate: undefined
   }
 },
   methods: {
-    setVue(id) {
-      const index = this.films.findIndex(film => film.id === id);
-      this.films[index].vu = !this.films[index].vu
+    async getFilms() {
+      this.movieToUpdate = undefined;
+      this.films = await FilmService.getAll()
+      // ou ( sans le async )
+      // FilmService.getAll().then(films => this.films = films)
     },
-    create(film) {
-      this.films.push(film)
-    },
+    update(film) {
+      console.log('in update', film)
+      this.movieToUpdate = {...film}
+    }
   },
   computed : {
     filtered()  {
       if(this.filter === 'ALL') return this.films;
       return this.films.filter(film => film.vu === this.filter )
     }
+  },
+  mounted() {
+    this.getFilms();
   }
 }
 </script>

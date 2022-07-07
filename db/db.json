@@ -1,0 +1,28 @@
+{
+  "films": [
+    {
+      "id": -1,
+      "title": "Saw 6",
+      "image": "dsqdsqdsq",
+      "vu": false
+    },
+    {
+      "title": "dqsdqs",
+      "image": "dsqdsq",
+      "vu": false,
+      "id": 0
+    },
+    {
+      "id": 1,
+      "title": "MachindsqdsqdqBidule",
+      "image": "tretreter",
+      "vu": false
+    },
+    {
+      "title": "truc",
+      "image": "tretreter",
+      "vu": false,
+      "id": 2
+    }
+  ]
+}

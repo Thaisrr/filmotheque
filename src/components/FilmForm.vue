@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="emitFilm">
+  <form @submit.prevent="create">
     <div>
       <label for="title">Titre</label>
       <input id="title" v-model="film.title" @input="this.title_dirty = true" @blur="title_dirty = true">
@@ -17,23 +17,41 @@
 
 <script>
 import {Film} from "@/models/Film";
+import FilmService from "@/services/FilmService";
 
 export default {
   name: "FilmForm",
   data: function () {
     return {
-      film: new Film(-1, '', '', false),
+      film:  new Film(-1, '', '', false),
       title_dirty: false,
-      img_dirty: false
+      img_dirty: false,
+      is_update: false
     }
   },
+  props: {
+    filmToUpdate: Film
+  },
   methods: {
-    emitFilm() {
-      if(!this.titleError && !this.imgError)
-        this.$emit('create', this.film)
+    create() {
+      if(!this.titleError && !this.imgError) {
+        if(!this.is_update) {
+          delete this.film.id;
+          FilmService.create(this.film).then(() => this.$emit('reload'));
+        } else {
+          FilmService.update(this.film).then(() => this.$emit('reload'));
+        }
+        this.reset();
+      }
       else
         console.error('Nope !')
     },
+    reset() {
+      this.is_update = false;
+      this.title_dirty = false;
+      this.img_dirty = false;
+      this.film = new Film(-1, '', '', false);
+    }
   },
   computed: {
     titleError() {
@@ -43,6 +61,17 @@ export default {
     imgError() {
       console.log('image computed')
       return !this.film.image
+    }
+  },
+  watch: {
+    filmToUpdate() {
+      console.info('---- updating prop', this.filmToUpdate)
+      if(this.filmToUpdate) {
+        this.film = this.filmToUpdate;
+        this.is_update = true;
+      } else {
+        this.reset()
+      }
     }
   }
 }

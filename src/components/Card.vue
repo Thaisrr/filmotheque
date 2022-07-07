@@ -5,13 +5,16 @@
     </div>
     <div class="c-body">
       <h3 :class="{seen: f.vu}">{{f.title}}</h3>
-      <button @click="emitUpdate(f)">{{ f.vu? 'Marquer comme non vu'  : 'Marquer comme vu' }}</button>
+      <button @click="update">{{ f.vu? 'Marquer comme non vu'  : 'Marquer comme vu' }}</button>
+      <button @click="remove">Supprimer</button>
+      <button @click="emitUpdate">Modifier</button>
     </div>
   </div>
 </template>
 
 <script>
 import {Film} from "@/models/Film";
+import FilmService from "@/services/FilmService";
 
 export default {
   name: "MyCard",
@@ -19,8 +22,18 @@ export default {
     f: Film
   },
   methods: {
+    update() {
+      const updated = {...this.f};
+      updated.vu = !updated.vu;
+      FilmService.update(updated)
+          .then(() => this.$emit('reload') )
+    },
+    remove() {
+      FilmService.delete(this.f.id)
+      .then(() => this.$emit('reload'))
+    },
     emitUpdate() {
-      this.$emit('update', this.f.id)
+      this.$emit('update', this.f)
     }
   }
 }
