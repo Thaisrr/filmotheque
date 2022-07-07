@@ -27,8 +27,10 @@ class FilmService {
             .catch( () => this.handleError())
     }
 
-    filmMapper(film) {
-        return new Film(film.id, film.title, film.image, film.vu)
+    filmMapper(film_raw) {
+        const film =  new Film(film_raw.id, film_raw.title, film_raw.image, film_raw.vu);
+        film.id = film_raw.id;
+        return film;
     }
 
 

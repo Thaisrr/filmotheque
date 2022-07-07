@@ -23,7 +23,7 @@ export default {
   name: "FilmForm",
   data: function () {
     return {
-      film:  new Film(-1, '', '', false),
+      film:  new Film('', '', false),
       title_dirty: false,
       img_dirty: false,
       is_update: false
@@ -36,7 +36,6 @@ export default {
     create() {
       if(!this.titleError && !this.imgError) {
         if(!this.is_update) {
-          delete this.film.id;
           FilmService.create(this.film).then(() => this.$emit('reload'));
         } else {
           FilmService.update(this.film).then(() => this.$emit('reload'));
@@ -50,7 +49,7 @@ export default {
       this.is_update = false;
       this.title_dirty = false;
       this.img_dirty = false;
-      this.film = new Film(-1, '', '', false);
+      this.film = new Film( '', '', false);
     }
   },
   computed: {

@@ -5,8 +5,7 @@ export class Film {
     vu;
 
 
-    constructor(id, title, image, vu) {
-        this.id = id;
+    constructor( title, image, vu) {
         this.title = title;
         this.image = image;
         this.vu = vu;
