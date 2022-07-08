@@ -16,6 +16,12 @@ class FilmService {
             .catch(() => this.handleError())
     }
 
+    getById(id) {
+        return axios.get(`${this.url}/${id}`)
+            .then( ({data}) => this.filmMapper(data))
+            .catch(() => this.handleError())
+    }
+
     delete(id) {
         return axios.delete(`${this.url}/${id}`)
             .catch(() => this.handleError())
@@ -28,7 +34,7 @@ class FilmService {
     }
 
     filmMapper(film_raw) {
-        const film =  new Film(film_raw.id, film_raw.title, film_raw.image, film_raw.vu);
+        const film =  new Film( film_raw.title, film_raw.image, film_raw.vu);
         film.id = film_raw.id;
         return film;
     }
@@ -36,6 +42,11 @@ class FilmService {
 
     handleError() {
         alert('Nope')
+    }
+
+
+    async test() {
+        return await axios.post('http://localhost:3000/register', {email: 'toto@mail.fr', password: 'toto'})
     }
 }
 

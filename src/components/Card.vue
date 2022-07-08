@@ -5,9 +5,14 @@
     </div>
     <div class="c-body">
       <h3 :class="{seen: f.vu}">{{f.title}}</h3>
-      <button @click="update">{{ f.vu? 'Marquer comme non vu'  : 'Marquer comme vu' }}</button>
-      <button @click="remove">Supprimer</button>
-      <button @click="emitUpdate">Modifier</button>
+      <div>
+        <button @click="update">{{ f.vu? 'Marquer comme non vu'  : 'Marquer comme vu' }}</button>
+        <button @click="remove">Supprimer</button>
+        <button @click="emitUpdate">Modifier</button>
+      </div>
+      <p>
+        <router-link :to="{name: 'details', params: {id: f.id}}">Détails</router-link>
+      </p>
     </div>
   </div>
 </template>

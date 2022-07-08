@@ -1,28 +1,110 @@
 {
-  "films": [
+  "users": [
     {
-      "id": -1,
-      "title": "Saw 6",
-      "image": "dsqdsqdsq",
-      "vu": false
-    },
-    {
-      "title": "dqsdqs",
-      "image": "dsqdsq",
-      "vu": false,
-      "id": 0
-    },
-    {
-      "id": 1,
-      "title": "MachindsqdsqdqBidule",
-      "image": "tretreter",
-      "vu": false
-    },
-    {
-      "title": "truc",
-      "image": "tretreter",
-      "vu": false,
-      "id": 2
+      "email": "toto@mail.fr",
+      "password": "$2a$10$FChjI4ykGoXPq.c4NMKb9OgC3WXHXRYuWO/YijeCYbvXANRaUl.eu",
+      "id": 1
     }
-  ]
+  ],
+  "films": [{
+    "id": 1,
+    "title": "Money for Nothing",
+    "image": "http://dummyimage.com/195x100.png/5fa2dd/ffffff",
+    "vu": true
+  }, {
+    "id": 2,
+    "title": "Hot Saturday",
+    "image": "http://dummyimage.com/151x100.png/dddddd/000000",
+    "vu": true
+  }, {
+    "id": 3,
+    "title": "Man with the Golden Gun, The",
+    "image": "http://dummyimage.com/122x100.png/ff4444/ffffff",
+    "vu": false
+  }, {
+    "id": 4,
+    "title": "Rescue Dawn",
+    "image": "http://dummyimage.com/243x100.png/cc0000/ffffff",
+    "vu": false
+  }, {
+    "id": 5,
+    "title": "Dead Men Walk",
+    "image": "http://dummyimage.com/117x100.png/cc0000/ffffff",
+    "vu": true
+  }, {
+    "id": 6,
+    "title": "Sister Act 2: Back in the Habit",
+    "image": "http://dummyimage.com/153x100.png/ff4444/ffffff",
+    "vu": true
+  }, {
+    "id": 7,
+    "title": "Jacques Brel Is Alive and Well and Living in Paris",
+    "image": "http://dummyimage.com/161x100.png/cc0000/ffffff",
+    "vu": false
+  }, {
+    "id": 8,
+    "title": "Little Traitor, The",
+    "image": "http://dummyimage.com/232x100.png/dddddd/000000",
+    "vu": false
+  }, {
+    "id": 9,
+    "title": "Gasland Part II",
+    "image": "http://dummyimage.com/165x100.png/5fa2dd/ffffff",
+    "vu": false
+  }, {
+    "id": 10,
+    "title": "Twentieth Century",
+    "image": "http://dummyimage.com/171x100.png/ff4444/ffffff",
+    "vu": true
+  }, {
+    "id": 11,
+    "title": "Luna Papa",
+    "image": "http://dummyimage.com/172x100.png/5fa2dd/ffffff",
+    "vu": true
+  }, {
+    "id": 12,
+    "title": "Leprechaun 4: In Space",
+    "image": "http://dummyimage.com/193x100.png/dddddd/000000",
+    "vu": false
+  }, {
+    "id": 13,
+    "title": "Fluke",
+    "image": "http://dummyimage.com/122x100.png/5fa2dd/ffffff",
+    "vu": true
+  }, {
+    "id": 14,
+    "title": "Death Note 2: The Last Name",
+    "image": "http://dummyimage.com/178x100.png/5fa2dd/ffffff",
+    "vu": false
+  }, {
+    "id": 15,
+    "title": "Pi",
+    "image": "http://dummyimage.com/190x100.png/dddddd/000000",
+    "vu": false
+  }, {
+    "id": 16,
+    "title": "Everybody Wants to Be Italian",
+    "image": "http://dummyimage.com/239x100.png/dddddd/000000",
+    "vu": true
+  }, {
+    "id": 17,
+    "title": "Truth in 24",
+    "image": "http://dummyimage.com/232x100.png/ff4444/ffffff",
+    "vu": true
+  }, {
+    "id": 18,
+    "title": "Devil's Brigade, The",
+    "image": "http://dummyimage.com/185x100.png/ff4444/ffffff",
+    "vu": true
+  }, {
+    "id": 19,
+    "title": "Endangered Species",
+    "image": "http://dummyimage.com/153x100.png/cc0000/ffffff",
+    "vu": true
+  }, {
+    "id": 20,
+    "title": "Guilty (Présumé coupable)",
+    "image": "http://dummyimage.com/104x100.png/dddddd/000000",
+    "vu": true
+  }]
 }

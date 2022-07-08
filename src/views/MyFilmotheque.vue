@@ -23,6 +23,7 @@
 import MyCard from "@/components/Card";
 import FilmForm from "@/components/FilmForm";
 import FilmService from "@/services/FilmService";
+import AuthenticationService from "@/services/AuthenticationService";
 
 
 export default {
@@ -54,7 +55,11 @@ name: "MyFilmotheque",
     }
   },
   mounted() {
+    console.log(AuthenticationService.getEmail())
     this.getFilms();
+    FilmService.test()
+        .then((d) => console.info(d))
+        .catch(err => console.log(err))
   }
 }
 </script>
